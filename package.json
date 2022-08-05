@@ -1,17 +1,24 @@
 {
-  "name": "chakra-project",
+  "name": "sparliang",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.2.6",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@tinacms/cli": "^0.61.0",
+    "framer-motion": "^4",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "styled-components": "^5.3.5",
+    "tinacms": "^0.68.14"
   },
   "devDependencies": {
     "eslint": "8.21.0",

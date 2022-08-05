@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import { ChakraProvider } from '@chakra-ui/react'
+import TinaProvider from '../.tina/components/TinaDynamicProvider.js'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+    
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <TinaProvider>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </TinaProvider>
+  );
 }
 
 export default MyApp
