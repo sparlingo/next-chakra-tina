@@ -1,9 +1,22 @@
-import Header from '../components/Header'
-    
-const Home = () => {
+import {
+  AiOutlineMenu,
+  Box,
+  Button,
+  chakra,
+  Flex,
+  Heading,
+  IconButton,
+  Stack,
+} from '@chakra-ui/react'
+//import Header from '../components/Header'
+//import Hero from '../components/Hero'
+import {Footer} from '../components/Footer'
+
+export default function Home() {
   return (
-    <h1>Blah</h1>
+    <div>
+        
+      <Footer />
+    </div>
   )
 }
-
-export default Home
