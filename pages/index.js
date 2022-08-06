@@ -1,8 +1,8 @@
-import { Heading } from '@chakra-ui/react'
+import Header from '../components/Header'
     
 const Home = () => {
   return (
-    <Heading>Welcome to Chakra + Next.js</Heading>
+    <h1>Blah</h1>
   )
 }
 
