@@ -11,7 +11,8 @@ import {
 } from '@chakra-ui/react'
 import NavItem from './NavItem'
 
-function Sidebar() {
+
+export default function Sidebar() {
   const {navSize, changeNavSize} = useState("large")
   return (
     <Flex
@@ -65,5 +66,3 @@ function Sidebar() {
     </Flex>
   )
 }
-
-export {Sidebar}

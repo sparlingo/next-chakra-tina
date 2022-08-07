@@ -1,214 +1,102 @@
-import React from 'react'
-import { useViewportScroll } from 'framer-motion'
-import {
-  AiFillGithub,
-  AiFillHome,
-  AiOutlineInbox,
-  AiOutlineMenu,
-  Box,
-  BsFillCameraVideoFill,
-  Button,
-  chakra,
-  CloseButton,
-  FaHeart,
-  FaMoon,
-  FaSun,
-  Flex,
-  HStack,
-  Icon,
-  IconButton,
-  Link,
-  Logo,
-  useColorMode,
-  useColorModeValue,
-  useDisclosure,
-  VStack
-} from '@chakra-ui/react'
+import React from "react";
+import { Link } from "@chakra-ui/react";
+import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import Logo from "./Logo";
 
-
-const Header = () => {
-  () => {
-    const mobileNav = useDisclosure()
-    const { toggleColorMode: toggleMode } = useColorMode()
-    const text = useColorModeValue("dark", "light")
-    const SwitchIcon = useColorModeValue(FaMoon, FaSun)
-    const bg = useColorModeValue("white", "gray.800")
-    const ref = React.useRef(null)
-    const [y, setY] = React.useState(0)
-    const height = ref.current ? ref.current.getBoundingClientRect() : 0
-    const { scrollY } = useViewportScroll()
-    React.useEffect(() => {
-      return scrollY.onChange(() => setY(scrollY.get()))
-    }, [scrollY])
-    const SponsorButton = (
-      <Box
-        display={{
-          base: "none",
-          md: "flex",
-        }}
-        alignItems="center"
-        as="a"
-        aria-label="Sponsor Choc UI on Open Collective"
-        href={""}
-        target="_blank"
-        rel="noopener noreferrer"
-        bg="gray.50"
-        borderWidth="1px"
-        borderColor="gray.200"
-        px="1em"
-        minH="36px"
-        rounded="md"
-        fontSize="sm"
-        color="gray.800"
-        outline="0"
-        transition="all 0.3s"
-        _hover={{
-          bg: "gray.100",
-          borderColor: "gray.300",
-        }}
-        _active={{
-          borderColor: "gray.200",
-        }}
-        _focus={{
-          boxShadow: "outline",
-        }}
-        ml={5}
-      >
-        <Icon as={FaHeart} w="4" h="4" color="red.500" mr="2" />
-        <Box as="strong" lineHeight="inherit" fontWeight="semibold">
-          Sponsor
-        </Box>
-      </Box>
-    );
-    const MobileNavContent = (
-      <VStack
-        pos="absolute"
-        top={0}
-        left={0}
-        right={0}
-        display={mobileNav.isOpen ? "flex" : "none"}
-        flexDirection="column"
-        p={2}
-        pb={4}
-        m={2}
-        bg={bg}
-        spacing={3}
-        rounded="sm"
-        shadow="sm"
-      >
-        <CloseButton
-          aria-label="Close menu"
-          justifySelf="self-start"
-          onClick={mobileNav.onClose}
-        />
-        <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
-          Dashboard
-        </Button>
-        <Button
-          w="full"
-          variant="solid"
-          colorScheme="brand"
-          leftIcon={<AiOutlineInbox />}
-        >
-          Inbox
-        </Button>
-        <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
-          Videos
-        </Button>
-      </VStack>
-    )
-  }
-  
-  
+const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
-    <Box pos="relative">
-      <chakra.header
-        ref={ref}
-        shadow={y > height ? "sm" : undefined}
-        transition="box-shadow 0.2s"
-        bg={bg}
-        borderTop="6px solid"
-        borderTopColor="brand.400"
-        w="full"
-        overflowY="hidden"
-      >
-        <chakra.div h="4.5rem" mx="auto" maxW="1200px">
-          <Flex w="full" h="full" px="6" align="center" justify="space-between">
-            <Flex align="center">
-              <Link href="/">
-                <HStack>
-                  <Logo />
-                </HStack>
-              </Link>
-            </Flex>
-  
-            <Flex
-              justify="flex-end"
-              w="full"
-              maxW="824px"
-              align="center"
-              color="gray.400"
-            >
-              <HStack
-                spacing="5"
-                display={{
-                  base: "none",
-                  md: "flex",
-                }}
-              >
-                <Link
-                  isExternal
-                  aria-label="Go to Choc UI GitHub page"
-                  href="https://github.com/anubra266/choc-ui"
-                >
-                  <Icon
-                    as={AiFillGithub}
-                    display="block"
-                    transition="color 0.2s"
-                    w="5"
-                    h="5"
-                    _hover={{
-                      color: "gray.600",
-                    }}
-                  />
-                </Link>
-              </HStack>
-              <IconButton
-                size="md"
-                fontSize="lg"
-                aria-label={`Switch to ${text} mode`}
-                variant="ghost"
-                color="current"
-                ml={{
-                  base: "0",
-                  md: "3",
-                }}
-                onClick={toggleMode}
-                icon={<SwitchIcon />}
-              />
-              {SponsorButton}
-              <IconButton
-                display={{
-                  base: "flex",
-                  md: "none",
-                }}
-                aria-label="Open menu"
-                fontSize="20px"
-                color="gray.800"
-                _dark={{
-                  color: "inherit",
-                }}
-                variant="ghost"
-                icon={<AiOutlineMenu />}
-                onClick={mobileNav.onOpen}
-              />
-            </Flex>
-          </Flex>
-          {MobileNavContent}
-        </chakra.div>
-      </chakra.header>
-    </Box>
-  )
-}
+    <Text
+      mb={{ base: isLast ? 0 : 8, sm: 0 }}
+      mr={{ base: 0, sm: isLast ? 0 : 8 }}
+      display="block"
+      {...rest}
+    >
+      <Link to={to}>{children}</Link>
+    </Text>
+  );
+};
 
-export default Header
+const CloseIcon = () => (
+  <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+    <title>Close</title>
+    <path
+      fill="white"
+      d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
+    />
+  </svg>
+);
+
+const MenuIcon = () => (
+  <svg
+    width="24px"
+    viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="white"
+  >
+    <title>Menu</title>
+    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+  </svg>
+);
+
+const Header = (props) => {
+  const [show, setShow] = React.useState(false);
+  const toggleMenu = () => setShow(!show);
+
+  return (
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      w="100%"
+      mb={8}
+      p={8}
+      bg={["grey.500", "primary.500", "transparent", "transparent"]}
+      color={["grey.800", "grey.100", "primary.700", "primary.700"]}
+      {...props}
+    >
+      <Flex align="center">
+        <Logo
+          w="100px"
+          color={["white", "white", "primary.500", "primary.500"]}
+        />
+      </Flex>
+
+      <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
+        {show ? <CloseIcon /> : <MenuIcon />}
+      </Box>
+
+      <Box
+        display={{ base: show ? "block" : "none", md: "block" }}
+        flexBasis={{ base: "100%", md: "auto" }}
+      >
+        <Flex
+          align="center"
+          justify={["center", "space-between", "flex-end", "flex-end"]}
+          direction={["column", "row", "row", "row"]}
+          pt={[4, 4, 0, 0]}
+        >
+          <MenuItem to="/">Home</MenuItem>
+          <MenuItem to="/how">How It works </MenuItem>
+          <MenuItem to="/faetures">Features </MenuItem>
+          <MenuItem to="/pricing">Pricing </MenuItem>
+          <MenuItem to="/signup" isLast>
+            <Button
+              size="sm"
+              rounded="md"
+              color={["primary.500", "primary.500", "white", "white"]}
+              bg={["black", "black", "primary.500", "primary.500"]}
+              _hover={{
+                bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
+              }}
+            >
+              Create Account
+            </Button>
+          </MenuItem>
+        </Flex>
+      </Box>
+    </Flex>
+  );
+};
+
+export default Header;
