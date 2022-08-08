@@ -49,7 +49,7 @@ const Header = (props) => {
       justify="space-between"
       wrap="wrap"
       w="100%"
-      mb={2}
+      mb={0}
       p={7}
       bg={["grey.500", "primary.500", "transparent", "transparent"]}
       color={["grey.800", "grey.100", "primary.700", "primary.700"]}
@@ -58,7 +58,7 @@ const Header = (props) => {
       <Flex align="center">
         <Logo
           w="100px"
-          color={["white", "white", "primary.500", "primary.500"]}
+          color={["black", "black", "primary.500", "primary.500"]}
         />
       </Flex>
 
@@ -77,10 +77,9 @@ const Header = (props) => {
           pt={[4, 4, 0, 0]}
         >
           <MenuItem to="/">Home</MenuItem>
-          <MenuItem to="/how">How It works </MenuItem>
-          <MenuItem to="/faetures">Features </MenuItem>
-          <MenuItem to="/pricing">Pricing </MenuItem>
-          <MenuItem to="/signup" isLast>
+          <MenuItem to="/how">Photo Gallery</MenuItem>
+          <MenuItem to="/journal">Journal</MenuItem>
+          <MenuItem to="/contact" isLast>
             <Button
               size="sm"
               rounded="md"
@@ -91,7 +90,7 @@ const Header = (props) => {
                 bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
               }}
             >
-              Create Account
+              Contact Us
             </Button>
           </MenuItem>
         </Flex>

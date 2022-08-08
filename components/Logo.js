@@ -7,7 +7,7 @@ import {
 export default function Logo(props) {
   return (
     <Box {...props}>
-      <Text fontSize="Xl" fontWeight="bold" bg="white">
+      <Text fontSize="xl" fontWeight="bold" bg="white">
         SparLiang
       </Text>
     </Box>
