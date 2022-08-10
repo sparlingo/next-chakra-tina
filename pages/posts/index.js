@@ -1,5 +1,4 @@
 import Layout from "../../components/Layout"
-import Link from "next/link"
 import { useTina } from "tinacms/dist/edit-state"
 import { client } from "../../.tina/__generated__/client"
 
@@ -10,17 +9,16 @@ export default function PostList(props) {
     variables: props.variables,
     data: props.data,
   })
-  const postsList = data.postConnection.edges
-  //console.log(postsList)
+  console.log(data)
   return (
     <Layout>
       <h1>Posts</h1>
       <div>
-        {postsList.map((post) => (
-          <div key={post.node.id}>
-            <Link href={`/posts/${post.node._sys.filename}`}>
+        {data.postConnection.edges.map(( {node} ) => (
+          <div key={node.id}>
+            {/* <Link href={`/posts/${post.node._sys.filename}`}>
               <a>{post.node._sys.filename}</a>
-            </Link>
+            </Link> */}
           </div>
         ))}
       </div>
@@ -30,7 +28,7 @@ export default function PostList(props) {
 
 export const getStaticProps = async () => {
   const { data, query, variables } = await client.queries.postConnection()
-
+  //console.log(data)
   return {
     props: {
       data,
@@ -40,3 +38,4 @@ export const getStaticProps = async () => {
     },
   }
 }
+
