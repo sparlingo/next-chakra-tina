@@ -1,34 +1,33 @@
-import Layout from "../../components/Layout"
-import { useTina } from "tinacms/dist/edit-state"
+import {
+  Box,
+  Flex,
+  Heading,
+} from '@chakra-ui/react'
 import { client } from "../../.tina/__generated__/client"
 
 export default function PostList(props) {
-  // data passes though in production mode and data is updated to the sidebar data in edit-mode
-  const { data } = useTina({
-    query: props.query,
-    variables: props.variables,
-    data: props.data,
+
+  const { data } = ({
+    data: props.data.postConnection
   })
-  console.log(data)
+  const posts = data.edges
+  //console.log(posts)
   return (
-    <Layout>
-      <h1>Posts</h1>
-      <div>
-        {data.postConnection.edges.map(( {node} ) => (
-          <div key={node.id}>
-            {/* <Link href={`/posts/${post.node._sys.filename}`}>
-              <a>{post.node._sys.filename}</a>
-            </Link> */}
-          </div>
+    <>
+    <Heading as='h2'>
+      Journal Entries
+    </Heading>
+        {posts.map((post) => (
+          <Box key={post.node.id}>
+            <p>{post.node.title}</p>
+          </Box>
         ))}
-      </div>
-    </Layout>
+    </>
   )
 }
 
 export const getStaticProps = async () => {
   const { data, query, variables } = await client.queries.postConnection()
-  //console.log(data)
   return {
     props: {
       data,
