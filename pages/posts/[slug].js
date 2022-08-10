@@ -1,27 +1,33 @@
-import Layout from "../../components/Layout"
+//import ReactMarkdown from 'react-markdown'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import {
+  Heading
+} from '@chakra-ui/react'
 import { useTina } from "tinacms/dist/edit-state"
 import { client } from "../../.tina/__generated__/client"
+
 
 export default function Home(props) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
   const { data } = useTina({
     query: props.query,
     variables: props.variables,
-    data: props.data,
+    data: props.data.post,
   })
 
+  // const postContent = ({
+  //   postContent: props.data.post
+  // })
+  console.log(data)
   return (
-    <Layout>
-      <code>
-        <pre
-          style={{
-            backgroundColor: "lightgray",
-          }}
-        >
-          {JSON.stringify(data.post, null, 2)}
-        </pre>
-      </code>
-    </Layout>
+    <div>
+      <Heading as='h2'>
+        {data.title}
+      </Heading>
+      <main>
+        <TinaMarkdown content={data.body} />
+      </main>
+    </div>
   )
 }
 

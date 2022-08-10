@@ -14,14 +14,14 @@ export default function PostList(props) {
   //console.log(posts)
   return (
     <>
-    <Heading as='h2'>
-      Journal Entries
-    </Heading>
-        {posts.map((post) => (
-          <Box key={post.node.id}>
-            <p>{post.node.title}</p>
-          </Box>
-        ))}
+      <Heading as='h2'>
+        Journal Entries
+      </Heading>
+      {posts.map((post) => (
+        <Box key={post.node.id}>
+          <p>{post.node.title}</p>
+        </Box>
+      ))}
     </>
   )
 }
