@@ -15,10 +15,6 @@ export default function Home(props) {
     data: props.data.post,
   })
 
-  // const postContent = ({
-  //   postContent: props.data.post
-  // })
-  console.log(data)
   return (
     <div>
       <Heading as='h2'>

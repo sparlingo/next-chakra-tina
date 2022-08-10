@@ -1,7 +1,12 @@
 import {
   Box,
+  Center,
+  Container,
+  Divider,
   Flex,
   Heading,
+  Spacer,
+  VStack,
 } from '@chakra-ui/react'
 import { client } from "../../.tina/__generated__/client"
 
@@ -14,14 +19,21 @@ export default function PostList(props) {
   //console.log(posts)
   return (
     <>
-      <Heading as='h2'>
-        Journal Entries
-      </Heading>
-      {posts.map((post) => (
-        <Box key={post.node.id}>
-          <p>{post.node.title}</p>
-        </Box>
-      ))}
+      <Flex maxW='lg'>
+        <Center>
+          <Heading as='h2'>
+            Journal Entries
+          </Heading>
+        </Center>
+        <Divider orientation='vertical'/>
+        <VStack>
+          {posts.map((post) => (
+            <Box maxW='md' p={5} key={post.node.id}>
+              <Heading as='h3'>{post.node.title}</Heading>
+            </Box>
+          ))}
+        </VStack>
+      </Flex>
     </>
   )
 }
