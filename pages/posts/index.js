@@ -48,7 +48,7 @@ export default function PostList(props) {
                 w={'full'}
                 bg={useColorModeValue('white', 'gray.900')}
                 boxShadow={'2xl'}
-                rounded={'md
+                rounded={'md'}
                 p={6}
                 overflow={'hidden'}>
                 <Box
