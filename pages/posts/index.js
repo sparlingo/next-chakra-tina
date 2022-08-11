@@ -46,7 +46,7 @@ export default function PostList(props) {
               <Box
                 maxW={'495px'}
                 w={'full'}
-                bg={useColorModeValue('white', 'gray.900')}
+                bg={'white'}
                 boxShadow={'2xl'}
                 rounded={'md'}
                 p={6}
@@ -67,7 +67,7 @@ export default function PostList(props) {
                 </Box>
                 <Stack>
                   <Heading
-                    color={useColorModeValue('gray.700', 'white')}
+                    color={'white'}
                     fontSize={'2xl'}
                     fontFamily={'body'}
                     py={5}
