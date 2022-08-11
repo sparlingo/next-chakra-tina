@@ -1,54 +1,78 @@
-import {
-  Stack,
-  Flex,
-  Button,
-  Text,
-  VStack,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Container, Stack, Flex, Box, Heading, Text, Image, useColorModeValue } from "@chakra-ui/react";
 
-export default function Hero() {
+import Blob from './Blob';
+
+const Hero = () => {
   return (
-    <Flex
-      w={'full'}
-      h={'100vh'}
-      backgroundImage={
-        'url(https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)'
-      }
-      backgroundSize={'cover'}
-      backgroundPosition={'center center'}>
-      <VStack
-        w={'full'}
-        justify={'center'}
-        px={useBreakpointValue({ base: 4, md: 8 })}
-        bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
-        <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
-          <Text
-            color={'white'}
-            fontWeight={700}
-            lineHeight={1.2}
-            fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-            eiusmod tempor
-          </Text>
-          <Stack direction={'row'}>
-            <Button
-              bg={'blue.400'}
-              rounded={'full'}
-              color={'white'}
-              _hover={{ bg: 'blue.500' }}>
-              Show me more
-            </Button>
-            <Button
-              bg={'whiteAlpha.300'}
-              rounded={'full'}
-              color={'white'}
-              _hover={{ bg: 'whiteAlpha.500' }}>
-              Show me more
-            </Button>
-          </Stack>
+    <Container maxW={'7xl'}>
+      <Stack
+        align={'center'}
+        spacing={ { base: 8, md: 10 } }
+        py={ { base: 20, md: 28 } }
+        direction={ { base: 'column', md: 'row' } }>
+        <Stack flex={1} spacing={ { base: 5, md: 10 } }>
+          <Heading
+            lineHeight={1.1}
+            fontWeight={600}
+            fontSize={ { base: '3xl', sm: '4xl', lg: '6xl' } }>
+            <Text
+              as={'span'}
+              position={'relative'}
+              _after={ {
+                content: "''",
+                width: 'full',
+                height: '20%',
+                position: 'absolute',
+                bottom: 1,
+                left: 0,
+                bg: 'cyan.400',
+                zIndex: -1,
+              } }>
+              SparLiang
+            </Text>
+            <br />
+            <Text as={'span'} color={'cyan.400'}>
+              Avram + Henrik + Kevin + Xinyi
+            </Text>
+          </Heading>
         </Stack>
-      </VStack>
-    </Flex>
+        <Flex
+          flex={1}
+          justify={'center'}
+          align={'center'}
+          position={'relative'}
+          w={'full'}>
+          <Blob
+            w={'150%'}
+            h={'150%'}
+            position={'absolute'}
+            top={'-20%'}
+            left={0}
+            zIndex={-1}
+            color={useColorModeValue('cyan.50', 'cyan.400')}
+          />
+          <Box
+            position={'relative'}
+            height={'300px'}
+            rounded={'2xl'}
+            boxShadow={'2xl'}
+            width={'full'}
+            overflow={'hidden'}>
+              <Image
+              alt={'Hero Image'}
+              fit={'cover'}
+              align={'center'}
+              w={'100%'}
+              h={'100%'}
+              src={
+                'https://cdn.pixabay.com/photo/2016/04/15/04/02/water-1330252_960_720.jpg'
+              }
+            />
+          </Box>
+        </Flex>
+      </Stack>
+    </Container>
   )
 }
+
+export default Hero
