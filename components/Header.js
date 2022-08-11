@@ -1,7 +1,21 @@
-import React from "react";
-import { Link } from "@chakra-ui/react";
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
-import Logo from "./Logo";
+import React from "react"
+import { Link } from "@chakra-ui/react"
+import {
+  Box,
+  Button, 
+  Drawer,
+  DrawerContent,
+  DrawerOverlay,
+  DrawerCloseButton,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  Flex,
+  Input,
+  Text,
+  Textarea,
+  useDisclosure } from "@chakra-ui/react"
+import Logo from "./Logo"
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
@@ -13,8 +27,8 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
     >
       <Link to={to}>{children}</Link>
     </Text>
-  );
-};
+  )
+}
 
 const CloseIcon = () => (
   <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +38,7 @@ const CloseIcon = () => (
       d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
     />
   </svg>
-);
+)
 
 const MenuIcon = () => (
   <svg
@@ -36,11 +50,14 @@ const MenuIcon = () => (
     <title>Menu</title>
     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
   </svg>
-);
+)
 
 const Header = (props) => {
-  const [show, setShow] = React.useState(false);
-  const toggleMenu = () => setShow(!show);
+  const [show, setShow] = React.useState(false)
+  const toggleMenu = () => setShow(!show)
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = React.useRef()
 
   return (
     <Flex
@@ -81,17 +98,45 @@ const Header = (props) => {
           <MenuItem to="/journal">Journal</MenuItem>
           <MenuItem to="/contact" isLast>
             <Button
+              ref={btnRef}
+              onClick={onOpen}
               size="sm"
               rounded="md"
-
-              color={["primary.500", "primary.500", "white", "white"]}
-              bg={["red.500", "red.500", "primary.500", "primary.500"]}
+              color={["cyan.400", "cyan.400", "white", "white"]}
+              bg={["cyan.500", "cyan.500", "primary.500", "primary.500"]}
               _hover={{
                 bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
               }}
             >
               Contact Us
             </Button>
+            <Drawer
+              isOpen={isOpen}
+              placement='right'
+              size='lg'
+              onClose={onClose}
+              finalFocusRef={btnRef}
+            >
+              <DrawerOverlay />
+              <DrawerContent>
+                <DrawerCloseButton />
+                <DrawerHeader>Send us an email</DrawerHeader>
+
+                <DrawerBody>
+                  <Textarea
+                    size="lg"
+                    placeholder='Type here...' 
+                  />
+                </DrawerBody>
+
+                <DrawerFooter>
+                  <Button variant='outline' mr={3} onClick={onClose}>
+                    Cancel
+                  </Button>
+                  <Button colorScheme='blue'>Send</Button>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
           </MenuItem>
         </Flex>
       </Box>
