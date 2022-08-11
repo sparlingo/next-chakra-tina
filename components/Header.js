@@ -125,7 +125,12 @@ const Header = (props) => {
                 <DrawerBody>
                   <Textarea
                     size="lg"
+                    rows={14}
                     placeholder='Type here...' 
+                  />
+                  <Input
+                    mt={8}
+                    placeholder='Your email...'
                   />
                 </DrawerBody>
 
