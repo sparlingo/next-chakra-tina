@@ -67,7 +67,7 @@ export default function PostList(props) {
                 </Box>
                 <Stack>
                   <Heading
-                    color={'white'}
+                    color={'black'}
                     fontSize={'2xl'}
                     fontFamily={'body'}
                     py={5}

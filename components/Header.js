@@ -1,5 +1,4 @@
 import React from "react"
-import NextLink from 'next/link'
 import {
   Box,
   Button, 
@@ -15,10 +14,11 @@ import {
   Link,
   Text,
   Textarea,
-  useDisclosure } from "@chakra-ui/react"
+  useDisclosure 
+} from "@chakra-ui/react"
 import Logo from "./Logo"
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
+const MenuItem = ({ children, isLast, to, ...rest }) => {
   return (
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 0 }}
@@ -26,7 +26,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
       display="block"
       {...rest}
     >
-      <Link to={to}>{children}</Link>
+      <Link href={to}>{children}</Link>
     </Text>
   )
 }
@@ -94,22 +94,16 @@ const Header = (props) => {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-         <MenuItem>
-            <NextLink href="/" passHref>
-              <Link>
-                Home
-              </Link>
-            </NextLink>
+         <MenuItem to={"/"}>
+           Home
           </MenuItem>
-          <MenuItem to="/how">Photo Gallery</MenuItem>
-          <MenuItem>
-            <NextLink href="/posts" passHref>
-              <Link>
-                Journal
-              </Link>
-            </NextLink>
+          <MenuItem to={"/gallery"}>
+            Gallery
           </MenuItem>
-          <MenuItem to="/contact" isLast>
+          <MenuItem to={"/posts"}>
+            Journal
+          </MenuItem>
+          <MenuItem isLast>
             <Button
               ref={btnRef}
               onClick={onOpen}
@@ -138,7 +132,11 @@ const Header = (props) => {
                 <DrawerBody>
                   <Textarea
                     size="lg"
+                    rows={14}
                     placeholder='Type here...' 
+                  />
+                  <Input
+                    placeholder="Enter your email..."
                   />
                 </DrawerBody>
 
@@ -157,4 +155,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default Header
