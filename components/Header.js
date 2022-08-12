@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "@chakra-ui/react"
+import NextLink from 'next/link'
 import {
   Box,
   Button, 
@@ -12,6 +12,7 @@ import {
   DrawerFooter,
   Flex,
   Input,
+  Link,
   Text,
   Textarea,
   useDisclosure } from "@chakra-ui/react"
@@ -93,9 +94,21 @@ const Header = (props) => {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          <MenuItem to="/">Home</MenuItem>
+         <MenuItem>
+            <NextLink href="/" passHref>
+              <Link>
+                Home
+              </Link>
+            </NextLink>
+          </MenuItem>
           <MenuItem to="/how">Photo Gallery</MenuItem>
-          <MenuItem to="/journal">Journal</MenuItem>
+          <MenuItem>
+            <NextLink href="/posts" passHref>
+              <Link>
+                Journal
+              </Link>
+            </NextLink>
+          </MenuItem>
           <MenuItem to="/contact" isLast>
             <Button
               ref={btnRef}
