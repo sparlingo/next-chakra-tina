@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "@chakra-ui/react"
 import {
   Box,
   Button, 
@@ -12,12 +11,14 @@ import {
   DrawerFooter,
   Flex,
   Input,
+  Link,
   Text,
   Textarea,
-  useDisclosure } from "@chakra-ui/react"
+  useDisclosure 
+} from "@chakra-ui/react"
 import Logo from "./Logo"
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
+const MenuItem = ({ children, isLast, to, ...rest }) => {
   return (
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 0 }}
@@ -25,7 +26,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
       display="block"
       {...rest}
     >
-      <Link to={to}>{children}</Link>
+      <Link href={to}>{children}</Link>
     </Text>
   )
 }
@@ -93,10 +94,16 @@ const Header = (props) => {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          <MenuItem to="/">Home</MenuItem>
-          <MenuItem to="/how">Photo Gallery</MenuItem>
-          <MenuItem to="/journal">Journal</MenuItem>
-          <MenuItem to="/contact" isLast>
+         <MenuItem to={"/"}>
+           Home
+          </MenuItem>
+          <MenuItem to={"/gallery"}>
+            Gallery
+          </MenuItem>
+          <MenuItem to={"/posts"}>
+            Journal
+          </MenuItem>
+          <MenuItem isLast>
             <Button
               ref={btnRef}
               onClick={onOpen}
@@ -129,8 +136,7 @@ const Header = (props) => {
                     placeholder='Type here...' 
                   />
                   <Input
-                    mt={8}
-                    placeholder='Your email...'
+                    placeholder="Enter your email..."
                   />
                 </DrawerBody>
 
@@ -149,4 +155,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default Header
