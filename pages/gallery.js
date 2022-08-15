@@ -12,16 +12,6 @@ export default function Home({data}) {
   //console.log(data)
   return (
     <Container maxW="4xl">
-      {/* {
-        photos.map((pic) => (
-          <Image
-            src={pic.src.portrait}
-            height={600}
-            width={400}
-            alt={pic.url}
-          />
-        ))
-      } */}
       <Carousel images={photos} />
     </Container>
   )

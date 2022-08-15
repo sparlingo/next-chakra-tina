@@ -30,20 +30,20 @@ export default function Carousel({images}) {
       bg: "cyan.500",
     },
   }
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slidesCount = slides.length;
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const slidesCount = slides.length
 
   const prevSlide = () => {
     setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
-  };
+  }
 
   const nextSlide = () => {
     setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
-  };
+  }
 
   const setSlide = (slide) => {
-    setCurrentSlide(slide);
-  };
+    setCurrentSlide(slide)
+  }
 
   const carouselStyle = {
     transition: "all .5s",
