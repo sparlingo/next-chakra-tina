@@ -23,6 +23,37 @@ const schema = defineSchema({
   },
   collections: [
     {
+      label: 'Image Galleries',
+      name: 'gallery',
+      path: 'content/galleries',
+      format: 'json',
+      fields: [
+        {
+          type: 'string',
+          label: 'title',
+          name: 'title',
+          isTitle: true,
+          required: true,
+
+        },
+        {
+          type: 'image',
+          label: 'Banner Image',
+          name: 'banner'
+        },
+        {
+          type: 'string',
+          label: 'Description',
+          name: 'description'
+        },
+        {
+          type: 'string',
+          label: 'Gallery Folder',
+          name: 'folder'
+        },
+      ]
+    },
+    {
       label: 'Blog Posts',
       name: 'post',
       path: 'content/posts',
@@ -32,6 +63,8 @@ const schema = defineSchema({
           type: 'string',
           label: 'Title',
           name: 'title',
+          isTitle: true,
+          required: true,
         },
         {
           type: 'rich-text',
