@@ -2,8 +2,14 @@ import React, {useState} from 'react'
 import {
   Box,
   Container,
+  Center,
+  Flex,
+  Grid,
+  GridItem,
   Heading,
   Image,
+  SimpleGrid,
+  Text,
 } from "@chakra-ui/react"
 import { client } from '../../.tina/__generated__/client'
 
@@ -23,13 +29,39 @@ export default function Home(props) {
   //console.log(data)
   return (
     <>
-      {galleries.map((gallery) => (
-        <Box key={gallery.node.id}>
-          <Heading as='h3'>
-            {gallery.node.title}
-          </Heading>
-        </Box>
-      ))}
+      <SimpleGrid columns={2} spacing={8}>
+        {galleries.map((gallery) => (
+          <Box>
+            <Box
+              key={gallery.node.id}
+              bg='gray.200'
+              mb={8}
+              maxW='xs'
+              minW='250px'
+              maxH="450px"
+              borderWidth='1px'
+              borderRadius='lg'
+              overflow='hidden'
+            >
+              <Image
+                src={gallery.node.banner}
+                alt="Gallery Hero Image"
+                boxSize='320px'
+                fit="contain"
+                />
+              <Box p={4}>
+                <Heading as='h3' lineHeight='tight'>
+                  {gallery.node.title}
+                </Heading>
+                <Text>
+                  {gallery.node.description}
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+        ))}
+      </SimpleGrid>
+      
     </>
   )
 }

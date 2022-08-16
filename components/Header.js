@@ -115,7 +115,7 @@ const Header = (props) => {
                 bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
               }}
             >
-              Contact Us
+              Get in Touch
             </Button>
             <Drawer
               isOpen={isOpen}
