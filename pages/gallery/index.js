@@ -14,25 +14,51 @@ import {
   Image,
   SimpleGrid,
   Text,
+  Wrap,
+  WrapItem
 } from "@chakra-ui/react"
-import { client } from '../../.tina/__generated__/client'
+//import { client } from '../../.tina/__generated__/client'
 
 //import Carousel from '../../components/Carousel'
 
-//import {getCuratedPhotos} from './api/pexels'
+import {getCuratedPhotos} from '../api/pexels'
 
-export default function Home(props) {
-  const { data } = ({
-    data: props.data.galleryConnection
-  })
-  const galleries = data.edges
+export default function Home({data}) {
+  // const { data } = ({
+  //   data: props.data.galleryConnection
+  // })
+  // const galleries = data.edges
   //console.log(galleries)
   
 
-  //const [photos] = useState(data)
+  const [photos, setPhotos] = useState(data)
   return (
     <>
-      <SimpleGrid columns={2} spacing={8}>
+      <Wrap px="1rem" spacing={4} justify="center">
+        {photos.map((pic) => (
+          <WrapItem
+            key={pic.id}
+            boxShadow="base"
+            rounded="20px"
+            overflow="hidden"
+            bg="white"
+            lineHeight="0"
+            _hover={{ boxShadow: "dark-lg" }}
+          >
+            <Link href={`/photos/${pic.id}`}>
+              <a>
+                <Image
+                  src={pic.src.portrait}
+                  height={600}
+                  width={400}
+                  alt={pic.url}
+                />
+              </a>
+            </Link>
+          </WrapItem>
+          ))}
+      </Wrap>
+      {/* <SimpleGrid columns={2} spacing={8}>
         {galleries.map((gallery) => (
           <Box key={gallery.node.id}>
             <Link href={`gallery/${gallery.node.folder}`}>
@@ -66,27 +92,27 @@ export default function Home(props) {
             </Link>
           </Box>
         ))}
-      </SimpleGrid>
+      </SimpleGrid> */}
       
     </>
   )
 }
 
-export const getStaticProps = async () => {
-  const { data, query, variables } = await client.queries.galleryConnection()
-  return {
-    props: {
-      data,
-      query,
-      variables
-    }
-  }
-}
-// export async function getServerSideProps() {
-//   const data = await getCuratedPhotos()
+// export const getStaticProps = async () => {
+//   const { data, query, variables } = await client.queries.galleryConnection()
 //   return {
 //     props: {
 //       data,
-//     },
+//       query,
+//       variables
+//     }
 //   }
 // }
+export async function getServerSideProps() {
+  const data = await getCuratedPhotos()
+  return {
+    props: {
+      data,
+    },
+  }
+}
