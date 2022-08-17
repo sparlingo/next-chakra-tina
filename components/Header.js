@@ -109,7 +109,7 @@ const Header = (props) => {
               onClick={onOpen}
               size="sm"
               rounded="md"
-              color={["cyan.400", "cyan.400", "white", "white"]}
+              color={["white", "white", "white", "white"]}
               bg={["cyan.500", "cyan.500", "primary.500", "primary.500"]}
               _hover={{
                 bg: ["primary.100", "primary.100", "primary.600", "primary.600"]

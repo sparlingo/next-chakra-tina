@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+// import {
+//   Link
+// } from 'next/link'
 import {
   Box,
   Container,
@@ -6,6 +9,7 @@ import {
   Flex,
   Grid,
   GridItem,
+  Link,
   Heading,
   Image,
   SimpleGrid,
@@ -22,42 +26,44 @@ export default function Home(props) {
     data: props.data.galleryConnection
   })
   const galleries = data.edges
-  console.log(galleries)
+  //console.log(galleries)
   
 
   //const [photos] = useState(data)
-  //console.log(data)
   return (
     <>
       <SimpleGrid columns={2} spacing={8}>
         {galleries.map((gallery) => (
-          <Box>
-            <Box
-              key={gallery.node.id}
-              bg='gray.200'
-              mb={8}
-              maxW='xs'
-              minW='250px'
-              maxH="450px"
-              borderWidth='1px'
-              borderRadius='lg'
-              overflow='hidden'
-            >
-              <Image
-                src={gallery.node.banner}
-                alt="Gallery Hero Image"
-                boxSize='320px'
-                fit="contain"
+          <Box key={gallery.node.id}>
+            <Link href={`gallery/${gallery.node.folder}`}>
+              <Box
+                bg='gray.200'
+                mb={8}
+                maxW='xs'
+                minW='250px'
+                maxH="450px"
+                minH="450px"
+                borderWidth='1px'
+                borderRadius='lg'
+                overflow='hidden'
+                shadow="base"
+              >
+                <Image
+                  src={gallery.node.banner}
+                  alt="Gallery Hero Image"
+                  boxSize='250px'
+                  fit="cover"
                 />
-              <Box p={4}>
-                <Heading as='h3' lineHeight='tight'>
-                  {gallery.node.title}
-                </Heading>
-                <Text>
-                  {gallery.node.description}
-                </Text>
+                <Box p={4}>
+                  <Heading as='h3' lineHeight='tight'>
+                    {gallery.node.title}
+                  </Heading>
+                  <Text>
+                    {gallery.node.description}
+                  </Text>
+                </Box>
               </Box>
-            </Box>
+            </Link>
           </Box>
         ))}
       </SimpleGrid>

@@ -15,7 +15,7 @@
     "@emotion/styled": "^11",
     "@tinacms/cli": "^0.61.1",
     "framer-motion": "^4",
-    "global": "^4.4.0",
+    "fs-extra": "^10.1.0",
     "graphql-tag": "^2.12.6",
     "netlify-cli": "^10.17.4",
     "next": "12.2.5",

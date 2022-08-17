@@ -1,10 +1,10 @@
 //import ReactMarkdown from 'react-markdown'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import {
   Heading
 } from '@chakra-ui/react'
-import { useTina } from "tinacms/dist/edit-state"
 import { client } from "../../.tina/__generated__/client"
+import { useTina } from "tinacms/dist/edit-state"
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 
 export default function Home(props) {
