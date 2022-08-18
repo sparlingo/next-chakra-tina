@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
-// import {
-//   Link
-// } from 'next/link'
 import {
+  Badge,
   Box,
   Container,
   Center,
+  Divider,
   Flex,
   Grid,
   GridItem,
@@ -13,103 +12,56 @@ import {
   Heading,
   Image,
   SimpleGrid,
+  Stack,
   Text,
   Wrap,
   WrapItem
 } from "@chakra-ui/react"
 //import { client } from '../../.tina/__generated__/client'
 
-//import Carousel from '../../components/Carousel'
-
 import {getCuratedPhotos} from '../api/pexels'
 
 export default function Home({data}) {
-  // const { data } = ({
-  //   data: props.data.galleryConnection
-  // })
-  // const galleries = data.edges
-  //console.log(galleries)
-  
 
-  const [photos, setPhotos] = useState(data)
+  const [albums, setAlbums] = useState(data)
   return (
     <>
-      <Wrap px="1rem" spacing={4} justify="center">
-        {photos.map((pic) => (
-          <WrapItem
-            key={pic.id}
+      <SimpleGrid columns={3} px="1rem" spacing={4} justify="center">
+        {albums.map((album) => (
+          <GridItem
+            key={album.id}
             boxShadow="base"
             rounded="20px"
             overflow="hidden"
             bg="white"
+            pb={4}
+            minW="150px"
             lineHeight="0"
+            borderWidth='1px'
+            borderRadius='lg'
             _hover={{ boxShadow: "dark-lg" }}
           >
-            <Link href={`/photos/${pic.id}`}>
-              <a>
-                <Image
-                  src={pic.src.portrait}
-                  height={600}
-                  width={400}
-                  alt={pic.url}
-                />
-              </a>
+            <Link href={`/gallery/${album.id}`}>
+              <Center>
+                <Heading as="h3" mt={2} mb={2}>
+                  {album.title}
+                </Heading>
+              </Center>                
+                <Stack direction='row' mt={3}>
+                  <Badge>{album.photos_count} Photos</Badge>
+                  <Badge>{album.videos_count} Videos</Badge>
+                </Stack>
             </Link>
-          </WrapItem>
-          ))}
-      </Wrap>
-      {/* <SimpleGrid columns={2} spacing={8}>
-        {galleries.map((gallery) => (
-          <Box key={gallery.node.id}>
-            <Link href={`gallery/${gallery.node.folder}`}>
-              <Box
-                bg='gray.200'
-                mb={8}
-                maxW='xs'
-                minW='250px'
-                maxH="450px"
-                minH="450px"
-                borderWidth='1px'
-                borderRadius='lg'
-                overflow='hidden'
-                shadow="base"
-              >
-                <Image
-                  src={gallery.node.banner}
-                  alt="Gallery Hero Image"
-                  boxSize='250px'
-                  fit="cover"
-                />
-                <Box p={4}>
-                  <Heading as='h3' lineHeight='tight'>
-                    {gallery.node.title}
-                  </Heading>
-                  <Text>
-                    {gallery.node.description}
-                  </Text>
-                </Box>
-              </Box>
-            </Link>
-          </Box>
+          </GridItem>
         ))}
-      </SimpleGrid> */}
-      
+      </SimpleGrid>
     </>
   )
 }
 
-// export const getStaticProps = async () => {
-//   const { data, query, variables } = await client.queries.galleryConnection()
-//   return {
-//     props: {
-//       data,
-//       query,
-//       variables
-//     }
-//   }
-// }
 export async function getServerSideProps() {
   const data = await getCuratedPhotos()
+  //console.log(data)
   return {
     props: {
       data,
