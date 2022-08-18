@@ -14,7 +14,7 @@ export default function gallery(props) {
     variables: props.variables,
     data: props.data.gallery,
   })
-  //console.log(data)
+  console.log(data)
 
   return (
     <Box>
@@ -46,8 +46,6 @@ export const getStaticProps = async (ctx) => {
   const { data, query, variables } = await client.queries.gallery({
     relativePath: ctx.params.slug + '.json',
   })
-  //const images = fs.readdir()
-  //console.log(data)
 
   return {
     props: {

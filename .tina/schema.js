@@ -48,8 +48,8 @@ const schema = defineSchema({
         },
         {
           type: 'string',
-          label: 'Gallery Folder',
-          name: 'folder'
+          label: 'Pexels Album ID',
+          name: 'pexelsID'
         },
       ]
     },
