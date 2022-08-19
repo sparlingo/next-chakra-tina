@@ -1,6 +1,6 @@
 const API_KEY = process.env.PEXELS_API
 
-export const getCuratedPhotos = async () => {
+export const getMyAlbums = async () => {
   const res = await fetch(
     `https://api.pexels.com/v1/collections`,
     {
@@ -9,7 +9,22 @@ export const getCuratedPhotos = async () => {
       },
     }
   )
+
   const responseJson = await res.json()
-  console.log(responseJson.collections)
+  //console.log(responseJson.collections)
   return responseJson.collections
+}
+
+export const getAlbum = async(id) => {
+  const res = await fetch(
+    `https://api.pexels.com/v1/collections/${id}`,
+    {
+      headers: {
+        Authorization: API_KEY,
+      },
+    }
+  )
+
+  const responseJson = await res.json()
+  return responseJson.media
 }

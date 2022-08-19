@@ -1,32 +1,33 @@
 import React, {useState} from 'react'
 import {
   Badge,
-  Box,
-  Container,
   Center,
-  Divider,
-  Flex,
-  Grid,
   GridItem,
   Link,
   Heading,
   Image,
   SimpleGrid,
   Stack,
-  Text,
-  Wrap,
-  WrapItem
 } from "@chakra-ui/react"
 //import { client } from '../../.tina/__generated__/client'
 
-import {getCuratedPhotos} from '../api/pexels'
+import {getMyAlbums} from '../api/pexels'
 
 export default function Home({data}) {
-
   const [albums, setAlbums] = useState(data)
+  //console.log(albums)
+
   return (
     <>
-      <SimpleGrid columns={3} px="1rem" spacing={4} justify="center">
+      <Heading as="h2">Photo/Video Albums</Heading>
+      <SimpleGrid 
+        columns={3} 
+        px="1rem" 
+        spacing={4} 
+        justify="center"
+        mb={6}
+        mt={8}
+      >
         {albums.map((album) => (
           <GridItem
             key={album.id}
@@ -60,7 +61,7 @@ export default function Home({data}) {
 }
 
 export async function getServerSideProps() {
-  const data = await getCuratedPhotos()
+  const data = await getMyAlbums()
   //console.log(data)
   return {
     props: {
