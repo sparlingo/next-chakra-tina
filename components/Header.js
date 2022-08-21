@@ -128,7 +128,6 @@ const Header = (props) => {
               <DrawerContent>
                 <DrawerCloseButton />
                 <DrawerHeader>Send us an email</DrawerHeader>
-
                 <DrawerBody>
                   <Textarea
                     size="lg"
@@ -139,7 +138,6 @@ const Header = (props) => {
                     placeholder="Enter your email..."
                   />
                 </DrawerBody>
-
                 <DrawerFooter>
                   <Button variant='outline' mr={3} onClick={onClose}>
                     Cancel
@@ -152,7 +150,7 @@ const Header = (props) => {
         </Flex>
       </Box>
     </Flex>
-  );
-};
+  )
+}
 
 export default Header

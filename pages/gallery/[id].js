@@ -1,7 +1,10 @@
 import {
   AspectRatio,
+  Box,
+  Flex,
   Heading,
   Image,
+  Link,
   Text,
   Wrap,
   WrapItem
@@ -12,6 +15,7 @@ import {getMyAlbums, getAlbum} from '../api/pexels'
 export default function gallery({data}) {
   const content = data
   console.log(content)
+
 
   if (content && content[0].type == 'Video') {
     return (
@@ -27,21 +31,22 @@ export default function gallery({data}) {
     )
   } else {
     return (
-      <Wrap px="1rem" spacing={4}>
+      <Flex px="1rem" width="full" spacing={6} justify="space-between">
         {content.map((pic) => (
-          <WrapItem
+          <Box
             key={pic.id}
             boxShadow="base"
             rounded="20px"
             overflow="hidden"
             bg="white"
+            px={8}
             lineHeight="0"
             _hover={{ boxShadow: "dark-lg" }}
           >
-            <Image src={pic.src.portrait} height={600} width={600} alt={pic.url} />
-          </WrapItem>
+            <Image src={pic.src.portrait} height={600} alt={pic.url} />
+          </Box>
         ))}
-      </Wrap>
+      </Flex>
     )
   }
 }

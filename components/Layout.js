@@ -10,7 +10,7 @@ export default function Layout({ children }) {
     <>
       <Header />
       <main>
-        <Container size="4xl">
+        <Container size="4xl" minH="600px">
           {children}
         </Container>
       </main>

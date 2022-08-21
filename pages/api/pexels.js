@@ -28,3 +28,13 @@ export const getAlbum = async(id) => {
   const responseJson = await res.json()
   return responseJson.media
 }
+
+export const getPhotoById = async (id) => {
+  const res = await fetch(`https://api.pexels.com/v1/photos/${id}`, {
+    headers: {
+      Authorization: API_KEY,
+    },
+  })
+  const responseJson = await res.json()
+  return responseJson
+}
