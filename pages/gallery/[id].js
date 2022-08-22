@@ -1,3 +1,5 @@
+import React, {useState, useCallback} from 'react'
+
 import {
   AspectRatio,
   Box,
@@ -9,6 +11,7 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
+import Gallery from "react-photo-gallery-next"
 
 import {getMyAlbums, getAlbum} from '../api/pexels'
 
@@ -36,14 +39,14 @@ export default function gallery({data}) {
           <Box
             key={pic.id}
             boxShadow="base"
-            rounded="20px"
+            rounded="10px"
             overflow="hidden"
             bg="white"
-            px={8}
+            ml={2}
             lineHeight="0"
             _hover={{ boxShadow: "dark-lg" }}
           >
-            <Image src={pic.src.portrait} height={600} alt={pic.url} />
+            <Image src={pic.src.large} alt={pic.url} />
           </Box>
         ))}
       </Flex>
