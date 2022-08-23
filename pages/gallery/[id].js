@@ -1,5 +1,3 @@
-import React, {useState, useCallback} from 'react'
-
 import {
   AspectRatio,
   Box,
@@ -11,13 +9,12 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
-import Gallery from "react-photo-gallery-next"
 
 import {getMyAlbums, getAlbum} from '../api/pexels'
 
 export default function gallery({data}) {
   const content = data
-  console.log(content)
+  //console.log(content)
 
 
   if (content && content[0].type == 'Video') {
