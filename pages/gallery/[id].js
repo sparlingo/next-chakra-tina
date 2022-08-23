@@ -46,7 +46,7 @@ export default function gallery({data}) {
             lineHeight="0"
             _hover={{ boxShadow: "dark-lg" }}
           >
-            <Image src={pic.src.large} alt={pic.url} />
+            <Image src={pic.src.large || pic.image} alt={pic.url} />
           </Box>
         ))}
       </Flex>
